@@ -1,43 +1,53 @@
-import { useState } from 'react';
-import './App.css'; 
+import { useState } from "react"
+import { Header } from "./components/Header"
 
-import { Header } from './components/Header';
-import { Home } from './pages/Home';
-import { Cartelera } from './pages/Cartelera';
-import { Detalle } from './pages/Detalle';
-import { Alimentos } from './pages/Alimentos';
-import { Otros } from './pages/Otros';
+// Importar las vistas que mostraremos según la navegación
+import Home from "./pages/Home"
+import Cartelera from "./pages/Cartelera"
+import Detalle from "./pages/Detalle"
+import { Alimentos } from "./pages/Alimentos"
+import { Otros } from "./pages/Otros"
 
 function App() {
-  // Estado para la navegación
-  const [vistaActual, setVistaActual] = useState('home');
+  // Se declara un estado que controla qué vista se muestra
+  const [vistaActual, setVistaActual] = useState("home")
+
+  // Aquí nos permite guardar alguna película seleccionada
+  const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null)
+
+  // Función para ir a detalle enviando datos
+  function verDetalle(pelicula) {
+    setPeliculaSeleccionada(pelicula)
+    setVistaActual("detalle")
+  }
 
   return (
-    <>
+    <div style={{ minHeight: "100vh" }}>
+      {/* Header controla navegación principal */}
       <Header cambiarVista={setVistaActual} />
-      
-      {/* Renderizado Condicional */}
-      {vistaActual === 'home' && (
-        <Home cambiarVista={setVistaActual} />
+
+      {/* Renderizado condicional */}
+      {vistaActual === "home" && (
+        <Home verDetalle={verDetalle} />
       )}
 
-      {vistaActual === 'cartelera' && (
-        <Cartelera cambiarVista={setVistaActual} />
+      {vistaActual === "cartelera" && (
+        <Cartelera verDetalle={verDetalle} />
       )}
 
-      {vistaActual === 'detalle' && (
-        <Detalle cambiarVista={setVistaActual}/>
+      {vistaActual === "detalle" && (
+        <Detalle pelicula={peliculaSeleccionada} />
       )}
 
-      {vistaActual === 'alimentos' && (
+      {vistaActual === "alimentos" && (
         <Alimentos />
       )}
 
-      {vistaActual === 'otros' && (
+      {vistaActual === "otros" && (
         <Otros />
       )}
-    </>
-  );
+    </div>
+  )
 }
 
-export default App;
+export default App

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "titulo": "Duna: Parte Dos",
+    "imagen": "duna.jpg",
+    "descripcion": "Paul Atreides se une a Chani y a los Fremen mientras busca venganza contra los conspiradores que destruyeron a su familia. Paul se enfrenta a una elección entre el amor de su vida y el destino del universo, y debe evitar un futuro terrible."
+  },
+  {
+    "id": 2,
+    "titulo": "Kung Fu Panda 4",
+    "imagen": "kunfu.jpg",
+    "descripcion": "Po está entrenando a un nuevo guerrero que ocupe su lugar para que él pueda convertirse en líder espiritual del Valle de la Paz. Sin embargo, la irrupción de una malvada hechicera que puede cambiar de apariencia trastoca sus planes."
+  },
+  {
+    "id": 3,
+    "titulo": "Intensamente 2",
+    "imagen": "intensamente.jpg",
+    "descripcion": "Ahora que es adolescente, Riley experimenta nuevos sentimientos como Ansiedad y Envidia, que se imponen a los viejos mientras ella duda sobre si abandonar a sus antiguas amigas por otras de la escuela secundaria."
+  },
+  {
+    "id": 4,
+    "titulo": "Zootopia 2",
+    "imagen": "zootopia.jpg",
+    "descripcion": "Sigue a los oficiales Judy Hopps y Nick Wilde investigando a un misterioso reptil llamado Gary que irrumpe en la metrópolis, poniendo en peligro la paz y forzándolos a explorar nuevas y peligrosas zonas de la ciudad para desentrañar una conspiración oculta que cuestiona sus prejuicios"
+  },
+  {
+    "id": 5,
+    "titulo": "Avatar",
+    "imagen": "avatar.jpg",
+    "descripcion": "En un exuberante planeta llamado Pandora viven los Na'vi, seres que aparentan ser primitivos pero que en realidad son muy evolucionados. Debido a que el ambiente de Pandora es venenoso, los híbridos humanos/Na'vi, llamados Avatares, están relacionados con las mentes humanas, lo que les permite moverse libremente por Pandora. Jake Sully, un exinfante de marina paralítico se transforma a través de un Avatar, y se enamora de una mujer Na'vi."
+  }
+]

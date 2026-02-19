@@ -1,4 +1,5 @@
 import '../App.css';
+import { useState } from 'react';
 
 // ========================================
 // INSTRUCCIONES: Coloca tus imágenes en src/assets/
@@ -39,6 +40,36 @@ const snacks = [
   { id: 9, imagen: muffinImg, nombre: 'Muffin de Arándano', desc: 'Muffin horneado con arándanos frescos', precio: '$40' },
 ];
 
+// Componente individual para manejar el estado de cada producto
+function ProductoItem({ prod }) {
+  const [cantidad, setCantidad] = useState(0);
+
+  const incrementar = () => setCantidad(c => c + 1);
+  const decrementar = () => setCantidad(c => (c > 0 ? c - 1 : 0));
+
+  return (
+    <div className="card-producto">
+      <img src={prod.imagen} alt={prod.nombre} className="producto-img" />
+      <h3 className="producto-nombre">{prod.nombre}</h3>
+      <p className="producto-desc">{prod.desc}</p>
+      <span className="producto-precio">{prod.precio}</span>
+
+      {/* Controles de Cantidad */}
+      <div className="contador-container">
+        <button className="contador-btn menos" onClick={decrementar}>-</button>
+        <span className="contador-valor">{cantidad}</span>
+        <button className="contador-btn mas" onClick={incrementar}>+</button>
+      </div>
+
+      {cantidad > 0 && (
+        <p className="producto-seleccionado">
+          Has seleccionado: {cantidad}
+        </p>
+      )}
+    </div>
+  );
+}
+
 function SeccionAlimentos({ titulo, icono, productos }) {
   return (
     <section>
@@ -48,12 +79,8 @@ function SeccionAlimentos({ titulo, icono, productos }) {
       </h2>
       <div className="main-container">
         {productos.map((prod) => (
-          <div className="card-producto" key={prod.id}>
-            <img src={prod.imagen} alt={prod.nombre} className="producto-img" />
-            <h3 className="producto-nombre">{prod.nombre}</h3>
-            <p className="producto-desc">{prod.desc}</p>
-            <span className="producto-precio">{prod.precio}</span>
-          </div>
+          // Usamos el nuevo componente ProductoItem
+          <ProductoItem key={prod.id} prod={prod} />
         ))}
       </div>
     </section>
