@@ -167,7 +167,7 @@ function Home({ verDetalle }) {
         ))}
       </main>
 
-      {/* Nueva sección de Noticias del Cine */}
+      {/*  sección de Noticias del Cine */}
       <section
         style={{
           maxWidth: "1000px",
