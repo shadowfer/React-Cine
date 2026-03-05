@@ -1,15 +1,37 @@
 import { useState } from "react"
+import { useParams } from "react-router-dom"
 import '../App.css';
 
+// Importar datos y mapeo de imágenes
+import peliculas from "../detalles.json"
+import dunaImg from "../assets/duna.jpg"
+import pandaImg from "../assets/kunfu.jpg"
+import intensaImg from '../assets/intensamente.jpg';
+import zooImg from '../assets/zootopia.jpg';
+import avatarImg from '../assets/avatar.jpg';
+
+const imagenes = {
+  "duna.jpg": dunaImg,
+  "kunfu.jpg": pandaImg,
+  "intensamente.jpg": intensaImg,
+  "zootopia.jpg": zooImg,
+  "avatar.jpg": avatarImg
+}
+
 // Vista de detalle de una película
-function Detalle({ pelicula }) {
+function Detalle() {
+  // Obtenemos el id de la URL
+  const { id } = useParams()
+
+  // Buscamos la película por id en el JSON
+  const pelicula = peliculas.find(p => p.id === Number(id))
 
   // Estados para el formulario
   const [nombre, setNombre] = useState("")
   const [cantidadBoletos, setCantidadBoletos] = useState(1)
   const [mensaje, setMensaje] = useState("")
 
-  // En el caso que no se seleccione ninguna película
+  // En el caso que no se encuentre la película
   if (!pelicula) {
     return (
       <main style={{ padding: "80px", textAlign: "center", color: "white" }}>
@@ -17,6 +39,9 @@ function Detalle({ pelicula }) {
       </main>
     )
   }
+
+  // Resolvemos la imagen internamente
+  const imagenResuelta = imagenes[pelicula.imagen]
 
   // Evento submit/enviar
   function manejarCompra(e) {
@@ -31,7 +56,7 @@ function Detalle({ pelicula }) {
       {/* Columna Izquierda: Póster */}
       <div className="detalle-left">
         <img
-          src={pelicula.imagen}
+          src={imagenResuelta}
           alt={pelicula.titulo}
           className="detalle-poster"
         />

@@ -1,22 +1,23 @@
+import { NavLink } from 'react-router-dom';
 import '../App.css'; 
 
-export function Header({ cambiarVista }) {
+export function Header() {
   return (
     <header className="header">
       <h1>CINE!!</h1>
       <nav className="nav-container">
-        <span className="nav-item" onClick={() => cambiarVista('home')}>
+        <NavLink to="/" className="nav-item">
           Inicio
-        </span>
-        <span className="nav-item" onClick={() => cambiarVista('cartelera')}>
+        </NavLink>
+        <NavLink to="/cartelera" className="nav-item">
           Cartelera
-        </span>
-        <span className="nav-item" onClick={() => cambiarVista('alimentos')}>
+        </NavLink>
+        <NavLink to="/alimentos" className="nav-item">
           Alimentos
-        </span>
-        <span className="nav-item" onClick={() => cambiarVista('otros')}>
+        </NavLink>
+        <NavLink to="/otros" className="nav-item">
           Otros
-        </span>
+        </NavLink>
       </nav>
     </header>
   );

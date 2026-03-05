@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { Routes, Route } from "react-router-dom"
 import { Header } from "./components/Header"
 
 // Importar las vistas que mostraremos según la navegación
@@ -9,43 +9,19 @@ import { Alimentos } from "./pages/Alimentos"
 import { Otros } from "./pages/Otros"
 
 function App() {
-  // Se declara un estado que controla qué vista se muestra
-  const [vistaActual, setVistaActual] = useState("home")
-
-  // Aquí nos permite guardar alguna película seleccionada
-  const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null)
-
-  // Función para ir a detalle enviando datos
-  function verDetalle(pelicula) {
-    setPeliculaSeleccionada(pelicula)
-    setVistaActual("detalle")
-  }
-
   return (
     <div style={{ minHeight: "100vh" }}>
-      {/* Header controla navegación principal */}
-      <Header cambiarVista={setVistaActual} />
+      {/* Header siempre visible */}
+      <Header />
 
-      {/* Renderizado condicional */}
-      {vistaActual === "home" && (
-        <Home verDetalle={verDetalle} />
-      )}
-
-      {vistaActual === "cartelera" && (
-        <Cartelera verDetalle={verDetalle} />
-      )}
-
-      {vistaActual === "detalle" && (
-        <Detalle pelicula={peliculaSeleccionada} />
-      )}
-
-      {vistaActual === "alimentos" && (
-        <Alimentos />
-      )}
-
-      {vistaActual === "otros" && (
-        <Otros />
-      )}
+      {/* Configuración de rutas */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cartelera" element={<Cartelera />} />
+        <Route path="/pelicula/:id" element={<Detalle />} />
+        <Route path="/alimentos" element={<Alimentos />} />
+        <Route path="/otros" element={<Otros />} />
+      </Routes>
     </div>
   )
 }

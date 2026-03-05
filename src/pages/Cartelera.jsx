@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { MovieCard } from "../components/MovieCard"
 // Importamos los datos del JSON
 import peliculas from "../detalles.json"
@@ -18,7 +19,14 @@ const imagenes = {
   "duna.jpg": dunaImg
 }
 
-function Cartelera({ verDetalle }) {
+function Cartelera() {
+  const navigate = useNavigate()
+
+  // Función de navegación programática a detalle
+  function irADetalle(id) {
+    navigate(`/pelicula/${id}`)
+  }
+
   return (
     <main
       style={{
@@ -37,8 +45,8 @@ function Cartelera({ verDetalle }) {
           title={pelicula.titulo}
           // Obtenemos la imagen del objeto de mapeo
           image={imagenes[pelicula.imagen]}
-          // Pasamos la película con la imagen resuelta para Detalle.jsx
-          onVerDetalle={() => verDetalle({ ...pelicula, imagen: imagenes[pelicula.imagen] })}
+          // Navegamos a la ruta de detalle con el id de la película
+          onVerDetalle={() => irADetalle(pelicula.id)}
         />
       ))}
     </main>

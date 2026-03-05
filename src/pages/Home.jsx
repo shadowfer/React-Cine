@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { MovieCard } from "../components/MovieCard"
 import peliculas from "../detalles.json"
 import '../App.css'; // Aseguramos importar los estilos
@@ -19,12 +20,19 @@ const imagenes = {
   "avatar.jpg": avatarImg
 }
 
-function Home({ verDetalle }) {
+function Home() {
+  const navigate = useNavigate()
+
   // Estado para guardar las noticias
   const [noticias, setNoticias] = useState([])
   
   // Estado para el índice del carrusel
   const [indiceActual, setIndiceActual] = useState(0)
+
+  // Función de navegación programática a detalle
+  function irADetalle(id) {
+    navigate(`/pelicula/${id}`)
+  }
 
   // useEffect que SIMULA el consumo de una API
   useEffect(() => {
@@ -115,7 +123,7 @@ function Home({ verDetalle }) {
                    <p className="carousel-desc-corta">{pelicula.descripcion.substring(0, 100)}...</p>
                   <button 
                     className="btn-amarillo" 
-                    onClick={() => verDetalle({ ...pelicula, imagen: imagenes[pelicula.imagen] })}
+                    onClick={() => irADetalle(pelicula.id)}
                   >
                     Ver Detalles
                   </button>
@@ -162,7 +170,7 @@ function Home({ verDetalle }) {
             key={pelicula.id}
             title={pelicula.titulo}
             image={imagenes[pelicula.imagen]} 
-            onVerDetalle={() => verDetalle({ ...pelicula, imagen: imagenes[pelicula.imagen] })}
+            onVerDetalle={() => irADetalle(pelicula.id)}
           />
         ))}
       </main>
