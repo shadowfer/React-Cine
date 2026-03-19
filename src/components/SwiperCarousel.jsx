@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import '../App.css';
+import '../styles/App.css';
 
 export function SwiperCarousel({ peliculas, imagenes, onVerDetalle }) {
   return (

@@ -1,4 +1,4 @@
-import '../App.css';
+import '../styles/App.css';
 
 // ========================================
 // INSTRUCCIONES: Coloca tus imágenes en src/assets/

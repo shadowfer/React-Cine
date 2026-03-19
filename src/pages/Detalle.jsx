@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { useParams } from "react-router-dom"
-import '../App.css';
+import '../styles/App.css';
 
 // Importar datos y mapeo de imágenes
-import peliculas from "../detalles.json"
+import peliculas from "../data/detalles.json"
 import dunaImg from "../assets/duna.jpg"
 import pandaImg from "../assets/kunfu.jpg"
 import intensaImg from '../assets/intensamente.jpg';

@@ -1,4 +1,4 @@
-import '../App.css';
+import '../styles/App.css';
 
 export function Button({ text, onClick }) {
   return (

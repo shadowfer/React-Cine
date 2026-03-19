@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { MovieCard } from "../components/MovieCard"
 // Importamos los datos del JSON
-import peliculas from "../detalles.json"
+import peliculas from "../data/detalles.json"
 
 // Importar todas las imágenes necesarias para la cartelera
 import intensaImg from '../assets/intensamente.jpg';

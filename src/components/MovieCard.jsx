@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from './Button';
-import '../App.css';
+import '../styles/App.css';
 
 export function MovieCard({ title, image, onVerDetalle }) {
   // Estado para manejar si es favorita o no

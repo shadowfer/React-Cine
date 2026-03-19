@@ -2,8 +2,8 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { MovieCard } from "../components/MovieCard"
 import { SwiperCarousel } from "../components/SwiperCarousel"
-import peliculas from "../detalles.json"
-import '../App.css'; // Aseguramos importar los estilos
+import peliculas from "../data/detalles.json"
+import '../styles/App.css'; // Aseguramos importar los estilos
 
 // Importar todas las imágenes necesarias para el Home
 import dunaImg from "../assets/duna.jpg"
