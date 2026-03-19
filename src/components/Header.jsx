@@ -18,6 +18,9 @@ export function Header() {
         <NavLink to="/otros" className="nav-item">
           Otros
         </NavLink>
+        <NavLink to="/contacto" className="nav-item">
+          Contacto
+        </NavLink>
       </nav>
     </header>
   );

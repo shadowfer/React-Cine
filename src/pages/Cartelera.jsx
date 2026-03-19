@@ -28,28 +28,37 @@ function Cartelera() {
   }
 
   return (
-    <main
-      style={{
-        maxWidth: "1200px",
-        margin: "0 auto",
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-        gap: "16px",
-        padding: "16px"
-      }}
-    >
-      {/* Usamos el JSON importado para renderizar todas las películas */}
-      {peliculas.map((pelicula) => (
-        <MovieCard
-          key={pelicula.id}
-          title={pelicula.titulo}
-          // Obtenemos la imagen del objeto de mapeo
-          image={imagenes[pelicula.imagen]}
-          // Navegamos a la ruta de detalle con el id de la película
-          onVerDetalle={() => irADetalle(pelicula.id)}
-        />
-      ))}
-    </main>
+    <>
+      <section style={{ textAlign: "center", marginBottom: "40px", marginTop: "80px" }}>
+        <h2 style={{ color: "#ffffff", fontSize: "2.5rem", fontWeight: "800", position: "relative", display: "inline-block" }}>
+          Cartelera
+          <div style={{ position: "absolute", bottom: "-10px", left: "25%", width: "50%", height: "4px", backgroundColor: "var(--accent-blue)", borderRadius: "2px" }}></div>
+        </h2>
+      </section>
+      <main
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          justifyItems: "center",
+          gap: "40px",
+          padding: "40px 20px"
+        }}
+      >
+        {/* Usamos el JSON importado para renderizar todas las películas */}
+        {peliculas.map((pelicula) => (
+          <MovieCard
+            key={pelicula.id}
+            title={pelicula.titulo}
+            // Obtenemos la imagen del objeto de mapeo
+            image={imagenes[pelicula.imagen]}
+            // Navegamos a la ruta de detalle con el id de la película
+            onVerDetalle={() => irADetalle(pelicula.id)}
+          />
+        ))}
+      </main>
+    </>
   )
 }
 

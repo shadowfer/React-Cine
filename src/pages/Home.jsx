@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { MovieCard } from "../components/MovieCard"
+import { SwiperCarousel } from "../components/SwiperCarousel"
 import peliculas from "../detalles.json"
 import '../App.css'; // Aseguramos importar los estilos
 
@@ -25,9 +26,6 @@ function Home() {
 
   // Estado para guardar las noticias
   const [noticias, setNoticias] = useState([])
-  
-  // Estado para el índice del carrusel
-  const [indiceActual, setIndiceActual] = useState(0)
 
   // Función de navegación programática a detalle
   function irADetalle(id) {
@@ -66,93 +64,26 @@ function Home() {
     obtenerNoticias()
   }, [])
 
-  // useEffect para el Auto-Play del carrusel
-  useEffect(() => {
-    const intervalo = setInterval(() => {
-      siguienteImagen()
-    }, 4000) // Cambia cada 4 segundos
-
-    return () => clearInterval(intervalo) // Limpia el intervalo al desmontar
-  }, [indiceActual]) // Se ejecuta cuando cambia indiceActual
-
-  // Funciones de control del carrusel
-  const siguienteImagen = () => {
-    setIndiceActual((previo) => (previo === peliculas.length - 1 ? 0 : previo + 1))
-  }
-
-  const anteriorImagen = () => {
-    setIndiceActual((previo) => (previo === 0 ? peliculas.length - 1 : previo - 1))
-  }
 
   return (
     <>
-      <section style={{ textAlign: "center", marginBottom: "30px" }}>
-        <h2 style={{ color: "#C6A664", fontSize: "2rem" }}>Estrenos Exclusivos</h2>
+      <section style={{ textAlign: "center", marginBottom: "40px", marginTop: "40px" }}>
+        <h2 style={{ color: "#ffffff", fontSize: "2.5rem", fontWeight: "800" }}>Estrenos Exclusivos</h2>
       </section>
 
-      {/* Contenedor del Carrusel */}
-      <div className="carousel-container">
-        
-        {/* Botón Anterior */}
-        <button onClick={anteriorImagen} className="carousel-btn prev-btn">❮</button>
-
-        {/* Cinta de películas que se mueve */}
-        <div 
-          className="carousel-track"
-          style={{ transform: `translateX(-${indiceActual * 100}%)` }}
-        >
-          {peliculas.map((pelicula) => (
-            <div key={pelicula.id} className="carousel-slide">
-              
-              {/* CAPA DE FONDO (Blurred) */}
-              <div 
-                className="carousel-bg-blur"
-                style={{ backgroundImage: `url(${imagenes[pelicula.imagen]})` }}
-              ></div>
-
-              {/* CONTENIDO PRINCIPAL (Poster + Info) */}
-              <div className="carousel-content">
-                <img 
-                  src={imagenes[pelicula.imagen]} 
-                  alt={pelicula.titulo} 
-                  className="carousel-poster"
-                />
-                
-                <div className="carousel-info">
-                  <h3>{pelicula.titulo}</h3>
-                   <p className="carousel-desc-corta">{pelicula.descripcion.substring(0, 100)}...</p>
-                  <button 
-                    className="btn-amarillo" 
-                    onClick={() => irADetalle(pelicula.id)}
-                  >
-                    Ver Detalles
-                  </button>
-                </div>
-              </div>
-
-            </div>
-          ))}
-        </div>
-
-        {/* Botón Siguiente */}
-        <button onClick={siguienteImagen} className="carousel-btn next-btn">❯</button>
-      </div>
-
-      {/* Indicadores (puntos abajo) */}
-      <div className="carousel-indicators">
-        {peliculas.map((_, idx) => (
-          <span 
-            key={idx} 
-            className={`indicator ${indiceActual === idx ? "active" : ""}`}
-            onClick={() => setIndiceActual(idx)}
-          ></span>
-        ))}
-      </div>
+      <SwiperCarousel 
+        peliculas={peliculas} 
+        imagenes={imagenes} 
+        onVerDetalle={irADetalle} 
+      />
 
 
       {/* Resto de peliculas en grilla */}
-      <section style={{ textAlign: "center", marginBottom: "30px", marginTop: "60px" }}>
-        <h2 style={{ color: "#C6A664", fontSize: "2rem" }}>Cartelera completa</h2>
+      <section style={{ textAlign: "center", marginBottom: "40px", marginTop: "80px" }}>
+        <h2 style={{ color: "#ffffff", fontSize: "2.5rem", fontWeight: "800", position: "relative", display: "inline-block" }}>
+          Cartelera completa
+          <div style={{ position: "absolute", bottom: "-10px", left: "25%", width: "50%", height: "4px", backgroundColor: "var(--accent-blue)", borderRadius: "2px" }}></div>
+        </h2>
       </section>
 
       <main
@@ -183,7 +114,7 @@ function Home() {
           padding: "20px"
         }}
       >
-        <h2 style={{ textAlign: "center", marginBottom: "30px", fontSize: "2rem", color: "#C6A664", borderBottom: "2px solid #C6A664", paddingBottom: "10px", display: "inline-block" }}>
+        <h2 style={{ textAlign: "center", marginBottom: "40px", fontSize: "2.2rem", color: "#ffffff", fontWeight: "800" }}>
           Noticias del Cine
         </h2>
         
@@ -192,11 +123,13 @@ function Home() {
             <article
               key={noticia.id}
               style={{
-                borderLeft: "4px solid #C6A664",
-                padding: "20px",
-                borderRadius: "0 8px 8px 0",
-                backgroundColor: "#1E1E3F",
-                boxShadow: "0 4px 6px rgba(0,0,0,0.3)"
+                borderLeft: "4px solid var(--accent-blue)",
+                padding: "24px",
+                borderRadius: "12px",
+                background: "var(--card-bg)",
+                backdropFilter: "blur(5px)",
+                border: "1px solid var(--card-border)",
+                boxShadow: "0 10px 20px rgba(0,0,0,0.2)"
               }}
             >
               <h3 style={{ margin: "0 0 10px 0", color: "#e8e8e8", fontSize: "1.3rem" }}>{noticia.title}</h3>

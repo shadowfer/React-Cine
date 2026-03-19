@@ -67,8 +67,13 @@ function Detalle() {
         <h2 className="detalle-titulo">{pelicula.titulo}</h2>
         <p className="detalle-descripcion">{pelicula.descripcion}</p>
 
-        <div className="detalle-compra-widget">
-          <h3 className="widget-titulo">Compra tus boletos</h3>
+        <div className="detalle-compra-widget" style={{ 
+          background: "var(--card-bg)", 
+          backdropFilter: "blur(10px)", 
+          border: "1px solid var(--card-border)",
+          boxShadow: "0 15px 35px rgba(0,0,0,0.4)"
+        }}>
+          <h3 className="widget-titulo" style={{ color: "var(--accent-blue)", borderBottom: "1px solid var(--card-border)" }}>Compra tus boletos</h3>
           
           <form onSubmit={manejarCompra} className="form-compra">
             <div className="form-group">
